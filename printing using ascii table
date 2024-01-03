@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+
+void printChars (char, char, int); // prototype of the function
+char charNew; // global variable to not have to initialize in the function
+
+int main() {
+  char char1; // user input for ch1
+  char char2; // user input for ch2
+  int number; // user input for number of chars per line
+  cout << "Enter a character: ";
+  cin >> char1;
+  cout << "Enter another character: ";
+  cin >> char2;
+  cout << "Enter a number: ";
+  cin >> number;
+  if (char1 >= char2) { // making sure the ascii table will work
+    cout << "Invalid chars. Please try again. ";
+  } else {
+    printChars(char1, char2, number); // calling the function
+  }
+}
+
+void printChars (char ch1, char ch2, int numPerLine) {
+  charNew = ch1; //charNew to print chars between ch1 and ch2
+  while (charNew <= ch2) { // until charNew = ch2...
+    for (int l = 1; l <= numPerLine; l++) { 
+      if (charNew == ch1) { // for printing ch1 within the for loop to keep track of the number per line
+        cout << ch1 << " ";
+        l = 2;
+      }
+      charNew = charNew + 1; // adding one to charNew to print the chars between ch1 and ch2
+      if ((l == numPerLine) && (charNew <= ch2)) {
+        cout << charNew << "\n"; // if numbers per line is maxed
+      } else if (charNew <= ch2) {
+        cout << charNew << " "; // if numbers per line is not maxed
+      } else if (charNew > ch2) {
+        break; // once the charNew value reaches ch2
+      }
+    }
+  }
+}
